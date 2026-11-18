@@ -1,0 +1,7 @@
+node_modules/
+out/*
+!out/final.mp4
+scripts/source.mov
+scripts/master.wav
+scripts/whoosh.wav
+public/graded.mp4
