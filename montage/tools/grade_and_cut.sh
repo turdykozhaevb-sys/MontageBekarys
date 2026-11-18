@@ -15,7 +15,7 @@ declare -a SHOTS=(
 FC=""; i=0
 for s in "${SHOTS[@]}"; do
   read -r a b trim <<<"$s"
-  FC+="[0:v]trim=start_frame=$a:end_frame=$b,setpts=PTS-STARTPTS,$BASE,$trim[v$i];"
+  if [ "${UNGRADED:-0}" = 1 ]; then FC+="[0:v]trim=start_frame=$a:end_frame=$b,setpts=PTS-STARTPTS[v$i];"; else FC+="[0:v]trim=start_frame=$a:end_frame=$b,setpts=PTS-STARTPTS,$BASE,$trim[v$i];"; fi
   FC+="[0:a]atrim=start=$(python3 -c "print($a/30)"):end=$(python3 -c "print($b/30)"),asetpts=PTS-STARTPTS,afade=t=in:d=0.012,afade=t=out:st=$(python3 -c "print(($b-$a)/30-0.012)"):d=0.012[a$i];"
   i=$((i+1))
 done
