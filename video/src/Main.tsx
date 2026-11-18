@@ -3,6 +3,7 @@ import {AbsoluteFill, Audio, Img, interpolate, random, spring, staticFile, useCu
 import tl from './timeline.json';
 
 const C = {navy: '#071B33', navy2: '#0D2F55', teal: '#19D3BE', gold: '#FFC93C', white: '#FFFFFF', red: '#F14635', green: '#22C55E', wa: '#25D366'};
+const BLACK_BG = true;
 const FONT = 'Inter, "Noto Sans", sans-serif';
 
 // ---------- fonts ----------
@@ -96,6 +97,7 @@ const Photo: React.FC<{src: string; a: number; b: number; from: number; to: numb
   const k = interpolate(t, [from, to], [0, 1], clamp);
   const sc = a + (b - a) * k;
   const op = interpolate(t, [from, from + fade], [0, 1], clamp);
+  if (BLACK_BG) return <AbsoluteFill style={{background: '#000'}} />;
   return (
     <AbsoluteFill style={{opacity: op, overflow: 'hidden'}}>
       <Img src={staticFile(`img/${src}`)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: pos, transform: `scale(${sc}) translate(${fx * k}px, ${fy * k}px)`, filter: `blur(${blur}px) saturate(1.1)`}} />
@@ -107,8 +109,8 @@ const Photo: React.FC<{src: string; a: number; b: number; from: number; to: numb
 // brand wash + vignette applied to every scene
 const Grade: React.FC = () => (
   <>
-    <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(7,27,51,.55) 0%, rgba(7,27,51,0) 28%, rgba(7,27,51,0) 48%, rgba(7,27,51,.78) 78%, rgba(7,27,51,.92) 100%)'}} />
-    <AbsoluteFill style={{boxShadow: 'inset 0 0 260px rgba(0,0,0,.55)'}} />
+    <AbsoluteFill style={{background: 'transparent'}} />
+    <AbsoluteFill style={{boxShadow: 'none'}} />
   </>
 );
 
@@ -473,7 +475,7 @@ export const Main: React.FC<{subs: boolean}> = ({subs}) => {
   const Sc = SC[scene.id];
   const cap = (tl.captions as Cap[]).find((c) => t >= c.t[0] && t < c.t[1]);
   return (
-    <AbsoluteFill style={{background: C.navy}}>
+    <AbsoluteFill style={{background: '#000'}}>
       <Audio src={staticFile('voice.mp3')} />
       <Sc />
       {tl.scenes.slice(1).map((s) => (
