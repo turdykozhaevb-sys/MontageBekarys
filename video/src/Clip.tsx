@@ -47,8 +47,8 @@ const Shade: React.FC = () => (
 // Gold pill that pops in at a given time and leaves before the next one
 const Pill: React.FC<{t0: number; t1: number; y: number; text: string; bg?: string; color?: string}> = ({t0, t1, y, text, bg = C.gold, color = C.navy}) => {
   const {t} = useT();
-  if (t < t0 || t >= t1) return null;
   const p = usePop(t0, {damping: 11, stiffness: 160, mass: 0.6});
+  if (t < t0 || t >= t1) return null;
   const out = interpolate(t, [t1 - 0.2, t1], [1, 0], clamp);
   return (
     <div style={{position: 'absolute', top: y, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: Math.min(p, out), transform: `scale(${0.7 + 0.3 * p})`}}>
@@ -72,10 +72,10 @@ const Sweep: React.FC<{at: number}> = ({at}) => {
 const Cta: React.FC = () => {
   const {t, f} = useT();
   const s0 = 36.65;
-  if (t < s0) return null;
   const band = usePop(s0, {damping: 14, stiffness: 140, mass: 0.8});
   const bp = usePop(36.8, {damping: 9, stiffness: 130, mass: 0.8});
   const kp = usePop(38.1, {damping: 7, stiffness: 200, mass: 0.6});
+  if (t < s0) return null;
   const pulse = 1 + Math.sin((t - s0) * 7) * 0.045;
   const ring = ((t - s0) * 1.1) % 1;
   return (
