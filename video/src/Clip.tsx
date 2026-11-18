@@ -99,7 +99,7 @@ export const Clip: React.FC = () => {
   const prize = PRIZES.find((p) => t >= p.t0 && t < p.t1);
   return (
     <AbsoluteFill style={{background: '#000'}}>
-      <OffthreadVideo src={staticFile('clip_clean.mp4')} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+      <OffthreadVideo src={staticFile('clip_source.mp4')} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
       <Shade />
       <Frame />
       <Progress />
