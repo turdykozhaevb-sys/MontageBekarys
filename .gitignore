@@ -6,3 +6,8 @@ video/node_modules/
 video/out/chk*.png
 video/out/*.mov
 video/out/*.png
+video/out/*.mp4
+video/out/render_done
+video/out/*.log
+video/out/fchk_*
+video/out/clip_*

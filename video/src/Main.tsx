@@ -4,13 +4,15 @@ import tl from './timeline.json';
 
 export const C = {navy: '#071B33', navy2: '#0D2F55', teal: '#19D3BE', gold: '#FFC93C', white: '#FFFFFF', red: '#F14635', green: '#22C55E', wa: '#25D366'};
 const BLACK_BG = true;
-export const FONT = 'Inter, "Noto Sans", sans-serif';
+export const FONT = '"Montserrat", "Noto Sans", sans-serif';
+export const DISPLAY = '"BebasNeue", "Montserrat", sans-serif';
 
 // ---------- fonts ----------
 const fonts = [
-  ['Inter', 800, 'Inter-ExtraBold.otf'],
-  ['Inter', 700, 'Inter-Bold.otf'],
-  ['Inter', 500, 'Inter-Medium.otf'],
+  ['Montserrat', 500, 'Montserrat-500.ttf'],
+  ['Montserrat', 700, 'Montserrat-700.ttf'],
+  ['Montserrat', 800, 'Montserrat-800.ttf'],
+  ['BebasNeue', 400, 'BebasNeue-Regular.ttf'],
 ] as const;
 export const useFonts = () => {
   const [h] = React.useState(() => delayRender('fonts'));
@@ -430,7 +432,7 @@ export const Subtitle: React.FC<{cap: Cap}> = ({cap}) => {
           const past = t >= we;
           const wp = spring({frame: f - Math.round(ws * fps), fps, config: {damping: 10, stiffness: 260, mass: 0.4}});
           return (
-            <span key={i} style={{display: 'inline-block', color: active ? C.gold : C.white, transform: `scale(${active ? 1 + 0.12 * Math.min(1, wp) : 1}) translateY(${active ? -6 : 0}px)`, opacity: past || active ? 1 : 0.92, WebkitTextStroke: '14px #06182E', paintOrder: 'stroke fill', textShadow: '0 8px 30px rgba(0,0,0,.55)'}}>
+            <span key={i} style={{display: 'inline-block', color: active ? C.gold : C.white, transform: `scale(${active ? 1 + 0.12 * Math.min(1, wp) : 1}) translateY(${active ? -6 : 0}px)`, opacity: past || active ? 1 : 0.92, textShadow: '0 8px 30px rgba(0,0,0,.55)'}}>
               {w}
             </span>
           );

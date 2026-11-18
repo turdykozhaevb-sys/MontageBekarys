@@ -1,7 +1,10 @@
 import React from 'react';
 import {AbsoluteFill, Audio, OffthreadVideo, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import tl from './timeline.json';
-import {Cap, C, FONT, Snow, Subtitle, WhatsApp, usePop, useFonts, useT, PRIZES} from './Main';
+import {Cap, C, FONT, DISPLAY, Snow, Subtitle, WhatsApp, usePop, useFonts, useT, PRIZES} from './Main';
+
+// Latin/digits only -> Bebas Neue (it has no Kazakh letters); anything Cyrillic -> Montserrat
+const pillFont = (t: string) => (/^[\x00-\x7F]*$/.test(t) ? DISPLAY : FONT);
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
@@ -49,7 +52,7 @@ const Pill: React.FC<{t0: number; t1: number; y: number; text: string; bg?: stri
   const out = interpolate(t, [t1 - 0.2, t1], [1, 0], clamp);
   return (
     <div style={{position: 'absolute', top: y, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: Math.min(p, out), transform: `scale(${0.7 + 0.3 * p})`}}>
-      <div style={{background: bg, color, fontFamily: FONT, fontWeight: 800, fontSize: 64, letterSpacing: 6, padding: '14px 50px', borderRadius: 999, boxShadow: '0 16px 50px rgba(0,0,0,.45)'}}>{text}</div>
+      <div style={{background: bg, color, fontFamily: pillFont(text), fontWeight: 800, fontSize: 64, letterSpacing: 6, padding: '14px 50px', borderRadius: 999, boxShadow: '0 16px 50px rgba(0,0,0,.45)'}}>{text}</div>
     </div>
   );
 };
