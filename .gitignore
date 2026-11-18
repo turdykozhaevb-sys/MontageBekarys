@@ -5,3 +5,4 @@ video/out/*.log
 video/node_modules/
 video/out/chk*.png
 video/out/*.mov
+video/out/*.png
