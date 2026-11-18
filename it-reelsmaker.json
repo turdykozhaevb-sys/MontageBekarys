@@ -1,0 +1,7 @@
+{
+  "project_root": "/home/user/MontageBekarys",
+  "remotion_dir": "/home/user/MontageBekarys/remotion",
+  "assets_dir": "",
+  "face_model": "/home/user/MontageBekarys/tools/models/face_detection_yunet_2023mar.onnx",
+  "last_seen_version": "1.6.1"
+}

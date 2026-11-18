@@ -1,0 +1,8 @@
+node_modules/
+remotion/out/
+remotion/.cache/
+*.log
+.DS_Store
+# derived analysis audio (re-created by the transcription step)
+edit/*/audio16k-*.wav
+edit/*/snip/*.wav
