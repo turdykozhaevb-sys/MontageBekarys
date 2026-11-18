@@ -467,13 +467,20 @@ const Chrome: React.FC = () => {
   );
 };
 
-export const Main: React.FC<{subs: boolean}> = ({subs}) => {
+export const Main: React.FC<{subs: boolean; overlay?: boolean}> = ({subs, overlay}) => {
   useFonts();
   const {t} = useT();
   const SC: Record<string, React.FC> = {hook: SceneHook, need: SceneNeed, clinic: SceneClinic, steps: SceneSteps, pay: ScenePay, promo: ScenePromo, prizes: ScenePrizes, cta: SceneCta};
   const scene = tl.scenes.find((s) => t >= s.start && t < s.end) ?? tl.scenes[tl.scenes.length - 1];
   const Sc = SC[scene.id];
   const cap = (tl.captions as Cap[]).find((c) => t >= c.t[0] && t < c.t[1]);
+  if (overlay) {
+    return (
+      <AbsoluteFill style={{background: 'transparent'}}>
+        {cap && <Subtitle key={cap.text + cap.t[0]} cap={cap} />}
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <Audio src={staticFile('voice.mp3')} />
