@@ -9,7 +9,7 @@ for (const subset of ["cyrillic", "cyrillic-ext", "latin"]) for (const w of ["70
 for (const subset of ["cyrillic", "latin"]) faces.push([SCRIPT, "400", subset, `MarckScript-400-${subset}.woff2`]);
 
 if (typeof document !== "undefined") {
-  const handle = delayRender("fonts");
+  const handle = delayRender("fonts", { timeoutInMilliseconds: 120000, retries: 2 });
   Promise.all(
     faces.map(([family, weight, , file]) => {
       const ff = new FontFace(family, `url(${staticFile(`fonts/${file}`)}) format("woff2")`, { weight });
