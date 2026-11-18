@@ -1,0 +1,5 @@
+node_modules/
+video/out/st/
+video/out/sheet*.png
+video/out/*.log
+video/node_modules/
