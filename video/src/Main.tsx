@@ -2,9 +2,9 @@ import React from 'react';
 import {AbsoluteFill, Audio, Img, interpolate, random, spring, staticFile, useCurrentFrame, useVideoConfig, delayRender, continueRender, Easing} from 'remotion';
 import tl from './timeline.json';
 
-const C = {navy: '#071B33', navy2: '#0D2F55', teal: '#19D3BE', gold: '#FFC93C', white: '#FFFFFF', red: '#F14635', green: '#22C55E', wa: '#25D366'};
+export const C = {navy: '#071B33', navy2: '#0D2F55', teal: '#19D3BE', gold: '#FFC93C', white: '#FFFFFF', red: '#F14635', green: '#22C55E', wa: '#25D366'};
 const BLACK_BG = true;
-const FONT = 'Inter, "Noto Sans", sans-serif';
+export const FONT = 'Inter, "Noto Sans", sans-serif';
 
 // ---------- fonts ----------
 const fonts = [
@@ -12,7 +12,7 @@ const fonts = [
   ['Inter', 700, 'Inter-Bold.otf'],
   ['Inter', 500, 'Inter-Medium.otf'],
 ] as const;
-const useFonts = () => {
+export const useFonts = () => {
   const [h] = React.useState(() => delayRender('fonts'));
   React.useEffect(() => {
     Promise.all(
@@ -27,7 +27,7 @@ const useFonts = () => {
 };
 
 // ---------- helpers ----------
-const useT = () => {
+export const useT = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   return {t: f / fps, f, fps};
@@ -35,7 +35,7 @@ const useT = () => {
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const ease = Easing.bezier(0.22, 1, 0.36, 1);
 /** spring that starts at absolute second t0 */
-const usePop = (t0: number, cfg = {damping: 13, stiffness: 150, mass: 0.7}) => {
+export const usePop = (t0: number, cfg = {damping: 13, stiffness: 150, mass: 0.7}) => {
   const {f, fps} = useT();
   return spring({frame: f - Math.round(t0 * fps), fps, config: cfg});
 };
@@ -80,7 +80,7 @@ const Gift: React.FC<{size: number; lid: number}> = ({size, lid}) => (
     </g>
   </svg>
 );
-const WhatsApp: React.FC<{size: number}> = ({size}) => (
+export const WhatsApp: React.FC<{size: number}> = ({size}) => (
   <svg width={size} height={size} viewBox="0 0 64 64">
     <circle cx="32" cy="32" r="32" fill={C.wa} />
     <path d="M32 13.5a18.4 18.4 0 0 0-15.8 27.8L13.6 50.5l9.4-2.5A18.4 18.4 0 1 0 32 13.5Z" fill="none" stroke="#fff" strokeWidth="3.6" strokeLinejoin="round" />
@@ -285,7 +285,7 @@ const ScenePay: React.FC = () => {
   );
 };
 
-const Snow: React.FC<{count?: number}> = ({count = 70}) => {
+export const Snow: React.FC<{count?: number}> = ({count = 70}) => {
   const {f} = useT();
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
@@ -327,7 +327,7 @@ const ScenePromo: React.FC = () => {
   );
 };
 
-const PRIZES = [
+export const PRIZES = [
   {t0: 27.94, t1: 29.74, img: 'iphone.jpg', big: 'iPhone 18', sub: 'Pro Max', n: '1', pos: '8% 50%'},
   {t0: 29.74, t1: 30.92, img: 'dubai.jpg', big: 'ДУБАЙ', sub: 'саяхат', n: '2', pos: '50% 50%'},
   {t0: 30.92, t1: 32.72, img: 'aktau.jpg', big: 'Rixos Aktau', sub: 'жолдама', n: '3', pos: '50% 62%'},
@@ -407,8 +407,8 @@ const SceneCta: React.FC = () => {
 };
 
 // ---------- subtitles ----------
-type Cap = {t: [number, number]; text: string};
-const Subtitle: React.FC<{cap: Cap}> = ({cap}) => {
+export type Cap = {t: [number, number]; text: string};
+export const Subtitle: React.FC<{cap: Cap}> = ({cap}) => {
   const {t, f, fps} = useT();
   const [a, b] = cap.t;
   const words = cap.text.split(' ');
