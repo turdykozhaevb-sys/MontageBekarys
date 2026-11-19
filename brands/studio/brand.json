@@ -1,0 +1,72 @@
+{
+ "schema": 2,
+ "slug": "studio",
+ "name": "Studio",
+ "description": "",
+ "language": "en",
+ "colors": {
+  "primary": "#111111",
+  "accent": "#FF2D75",
+  "light": "#FFE600",
+  "text_on_primary": "#FFE600",
+  "text_on_accent": "#111111",
+  "extra": {}
+ },
+ "fonts": {
+  "heading": {
+   "family": "Manrope",
+   "weights": [
+    600,
+    800
+   ],
+   "source": "google"
+  },
+  "body": {
+   "family": "Inter",
+   "weights": [
+    500,
+    600,
+    700,
+    800
+   ],
+   "source": "google"
+  }
+ },
+ "logos": {},
+ "lut": null,
+ "tagline": "",
+ "guide": null,
+ "rules": "rules.md",
+ "styles": {
+  "default": "marker",
+  "allowed": [
+   "marker",
+   "brand",
+   "minimal",
+   "editorial",
+   "bold"
+  ]
+ },
+ "subtitles_default": "accent",
+ "motion": null,
+ "tone": {
+  "preset": "bold"
+ },
+ "voice": "",
+ "forbidden_imagery": [],
+ "forbidden_imagery_en": [],
+ "cta_library": null,
+ "asset_verdicts": null,
+ "approver": "brand owner (to confirm)",
+ "account": "business",
+ "music_policy": "do not burn in without a commercial license; pick the track in the app when publishing",
+ "memes_policy": "strict",
+ "inserts": {},
+ "brandbook": [],
+ "fonts_found": null,
+ "examples": [],
+ "derived": [],
+ "created": "2026-11-19",
+ "updated": "2026-11-19",
+ "last_used": "2026-11-19"
+}

@@ -1,0 +1,5 @@
+{"speed":1.08,
+ "sources":{"main":{"file":"/root/.claude/uploads/5355fc1e-751f-59ce-a752-046b1c819c3c/638ec213-IMG_9110.mov"}},
+ "look":{"grade":"eq=contrast=1.08:saturation=1.18,vibrance=0.12"},
+ "ranges":[{"start":0.7,"end":5.333},{"start":5.7,"end":8.467},{"start":8.7,"end":9.567},{"start":9.767,"end":10.967},{"start":11.2,"end":13.667},{"start":13.933,"end":17.067},{"start":17.2,"end":19.133}],
+ "fix":{"дұстар":"Достар","харашы":"қараша","кенгсемізде":"кеңсемізде","есікінің":"есік күнін"}}

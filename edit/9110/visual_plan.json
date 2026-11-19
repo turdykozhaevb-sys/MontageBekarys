@@ -1,0 +1,238 @@
+{
+ "schema": 1,
+ "id": "9110",
+ "created": "2026-11-19T02:11",
+ "duration": 15.767,
+ "segments": [
+  {
+   "id": "s01",
+   "start": 0.0,
+   "end": 4.3,
+   "text": "Дұстар, біздің 17 студиямыз Жаңузияң ғаласында ашылғанына",
+   "cut_segs": [
+    0
+   ],
+   "main": "main shot",
+   "camera": "",
+   "graphics": "",
+   "hints": [
+    "a number -> a card works better than B-roll",
+    "hook: the first 1.5 s decide whether people keep watching",
+    "scene:stat - a number in the speech -> a stat scene (a source is required)"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s02",
+   "start": 4.3,
+   "end": 6.078,
+   "text": "рогыны бір жыл болып шатырекен.",
+   "cut_segs": [
+    1
+   ],
+   "main": "main shot",
+   "camera": "",
+   "graphics": "",
+   "hints": [
+    "a segment join at the start: B-roll will hide the cut"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s03",
+   "start": 6.078,
+   "end": 11.869,
+   "text": "Соған ұрай, кеңсемізде клиенттерге арналған ашық есік күнін болатындыңыз қабарылаймыз. 21.",
+   "cut_segs": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "main": "main shot",
+   "camera": "",
+   "graphics": "",
+   "hints": [
+    "a number -> a card works better than B-roll",
+    "scene:stat - a number in the speech -> a stat scene (a source is required)"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s04",
+   "start": 11.869,
+   "end": 13.967,
+   "text": "харашы, сағат 15 .00-ді.",
+   "cut_segs": [
+    5
+   ],
+   "main": "main shot",
+   "camera": "",
+   "graphics": "",
+   "hints": [
+    "a number -> a card works better than B-roll",
+    "ending/CTA: no memes here",
+    "scene:stat - a number in the speech -> a stat scene (a source is required)"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s05",
+   "start": 13.967,
+   "end": 15.767,
+   "text": "Келіңіздер сіздері тосынсы кітеді.",
+   "cut_segs": [
+    6
+   ],
+   "main": "main shot",
+   "camera": "",
+   "graphics": "",
+   "hints": [
+    "a segment join at the start: B-roll will hide the cut",
+    "ending/CTA: no memes here"
+   ],
+   "notes": ""
+  }
+ ],
+ "inserts": [],
+ "keep_clear": [],
+ "captions_id": "bee3d604ccb1",
+ "brand": "studio",
+ "settings": {
+  "brand": "studio",
+  "style": null,
+  "subtitles": null,
+  "subtitles_shade": null,
+  "intensity": "active",
+  "use_broll": false,
+  "use_project_footage": true,
+  "use_local_footage": true,
+  "use_generated_footage": true,
+  "use_memes": false,
+  "use_local_memes": true,
+  "broll_priority": [
+   "project",
+   "local",
+   "generated"
+  ],
+  "meme_priority": [
+   "local"
+  ],
+  "footage_dirs": [
+   "footage",
+   "broll"
+  ],
+  "memes_dirs": [
+   "memes"
+  ],
+  "generation_engines": [
+   "code"
+  ],
+  "library_dirs": [],
+  "meme_size": "m",
+  "scene_tone": "punchy",
+  "use_scenes": false,
+  "brand_tone": {
+   "label": "Bold, with humor",
+   "for": "entertainment, events, provocative and humorous content",
+   "intensity": "active",
+   "motion": "energetic",
+   "loudness": "loud",
+   "memes": {
+    "allowed": true,
+    "default": true,
+    "max": 4,
+    "size_max": "l",
+    "cutaway": true
+   },
+   "broll_default": true,
+   "transitions": [
+    "cut",
+    "fade",
+    "whip",
+    "slide",
+    "flash"
+   ],
+   "flash_max": 3,
+   "whip_max": 6,
+   "shake": true,
+   "overshoot": true,
+   "full_scenes_max": 3,
+   "scene_tones": [
+    "punchy",
+    "hype",
+    "parody",
+    "cinematic",
+    "deadpan"
+   ],
+   "scene_tone": "punchy",
+   "sfx": "dense",
+   "preset": "bold"
+  }
+ },
+ "provenance": {
+  "brand": "reel.json",
+  "style": "defaults",
+  "subtitles": "defaults",
+  "subtitles_shade": "defaults",
+  "intensity": "tone:bold",
+  "use_broll": "reel.json",
+  "use_project_footage": "defaults",
+  "use_local_footage": "defaults",
+  "use_generated_footage": "defaults",
+  "use_memes": "reel.json",
+  "use_local_memes": "defaults",
+  "broll_priority": "defaults",
+  "meme_priority": "defaults",
+  "footage_dirs": "defaults",
+  "memes_dirs": "defaults",
+  "generation_engines": "defaults",
+  "library_dirs": "defaults",
+  "meme_size": "tone:bold",
+  "scene_tone": "tone:bold",
+  "use_scenes": "reel.json",
+  "brand_tone": "brand:studio"
+ },
+ "effective": {
+  "broll": false,
+  "project_footage": false,
+  "local_footage": false,
+  "generated_code": false,
+  "memes": false,
+  "local_memes": false,
+  "scenes": false,
+  "online_footage": false,
+  "generated_prompts": false,
+  "generate_now": false,
+  "online_memes": false,
+  "online_footage_providers": [],
+  "online_meme_providers": []
+ },
+ "fallback": {
+  "broll": "use_broll=false",
+  "project_footage": "off",
+  "local_footage": "off",
+  "generated_code": "off",
+  "memes": "use_memes=false",
+  "local_memes": "off",
+  "scenes": "use_scenes=false",
+  "online_footage": "off",
+  "generated_prompts": "off",
+  "generate_now": "off",
+  "online_memes": "off"
+ },
+ "budget": {
+  "label": "active",
+  "broll_per_30s": 6,
+  "memes_max": 4,
+  "coverage_max": 0.4,
+  "min_gap_s": 2.0,
+  "broll_max": 4,
+  "coverage_max_s": 6.31
+ },
+ "subtitles_band": [
+  1290,
+  1458
+ ]
+}

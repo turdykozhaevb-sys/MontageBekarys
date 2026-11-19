@@ -1,0 +1,63 @@
+{
+ "slug": "studio",
+ "name": "Studio",
+ "tagline": "",
+ "colors": {
+  "primary": "#111111",
+  "accent": "#FF2D75",
+  "light": "#FFE600",
+  "text_on_primary": "#FFE600",
+  "text_on_accent": "#111111",
+  "extra": {}
+ },
+ "fonts": {
+  "heading": {
+   "family": "Manrope",
+   "weights": [
+    600,
+    800
+   ],
+   "source": "google"
+  },
+  "body": {
+   "family": "Inter",
+   "weights": [
+    500,
+    600,
+    700,
+    800
+   ],
+   "source": "google"
+  }
+ },
+ "logos": {},
+ "motion": "energetic",
+ "tone": {
+  "preset": "bold",
+  "label": "Bold, with humor",
+  "loudness": "loud",
+  "overshoot": true,
+  "shake": true,
+  "scene_tone": "punchy",
+  "scene_tones": [
+   "punchy",
+   "hype",
+   "parody",
+   "cinematic",
+   "deadpan"
+  ],
+  "full_scenes_max": 3,
+  "transitions": [
+   "cut",
+   "fade",
+   "whip",
+   "slide",
+   "flash"
+  ],
+  "flash_max": 3,
+  "whip_max": 6,
+  "sfx": "dense"
+ },
+ "subtitles_default": "accent",
+ "style_default": "marker"
+}
