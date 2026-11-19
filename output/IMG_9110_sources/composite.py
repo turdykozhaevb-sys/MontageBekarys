@@ -8,7 +8,9 @@ def zoom(t):  # virtual camera keyframes (output time)
     if t<13.39: return 1.10-0.02*ease((t-7.11)/0.6)
     if t<16.39: return 1.0+0.03*((t-13.39)/3.0)
     return 1.085-0.01*ease((t-16.39)/0.5)
-dec=subprocess.Popen(['ffmpeg','-v','error','-ss',str(off),'-i',src,'-t',str(dur),'-f','rawvideo','-pix_fmt','rgb24','-'],stdout=subprocess.PIPE)
+# source is iPhone HLG/Dolby Vision HDR: tone-map to SDR bt709 (no grading)
+TM='zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:rin=tv:t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=mobius:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p'
+dec=subprocess.Popen(['ffmpeg','-v','error','-ss',str(off),'-i',src,'-t',str(dur),'-vf',TM,'-f','rawvideo','-pix_fmt','rgb24','-'],stdout=subprocess.PIPE)
 enc=subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{Wd}x{Ht}','-r',str(FPS),'-i','-',
   '-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709',
   '-c:v','libx264','-preset','medium','-crf','16','-pix_fmt','yuv420p',out],stdin=subprocess.PIPE)
