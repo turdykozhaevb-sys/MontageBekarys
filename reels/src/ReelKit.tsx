@@ -18,6 +18,7 @@ import { Brand, Look, alpha, fullLogoOnDark, logoOnDark, styleLook, useLookFonts
 import { neutralBrand } from "./kit/defaultBrand";
 import { BrollLayer, Insert, MemeLayer } from "./kit/Inserts";
 import { Captions, KitSubtitles, SubtitleMode } from "./kit/Subtitles";
+import { PopSubs } from "./kit/PopSubs";
 import { breakLines, fitSize, useFontsReady } from "./kit/Phrase";
 import { COVER_ZONE, COVER_ZONE_LOW, Cover, CoverText, ResolvedTone, SceneFrameBox, SceneLayer, SceneSpec, contrast, resolveBrandTone, sceneActivity,
   sceneHideIntervals, speakerRectAt, withRollTone } from "./kit/scenes";
@@ -28,6 +29,7 @@ export type ReelKitProps = {
   video: string; // path inside public/
   captions: Captions;
   // subtitles in another language (subs.py → captions-<lang>.json); the speech words in captions still time the scenes
+  popSubs?: boolean; // custom animated pop subtitles (no plate, no outline)
   subtitleCaptions?: Captions | null;
   brand: Brand;
   // video style (reel.json → style, otherwise brand.style_default): marker / v2 / brand; anything else — marker with a warning
@@ -345,6 +347,7 @@ export const ReelKit: React.FC<ReelKitProps> = (p) => {
       <MemeLayer inserts={p.inserts} brand={p.brand} />
       <KitSubtitles captions={p.subtitleCaptions ?? p.captions} brand={p.brand} font={fonts.body} mode={p.subtitles} hide={hide}
         top={p.subtitlesTop ?? 1290} look={look} shade={p.subtitlesShade ?? 0.35} part="text" tail={tail} {...subArea} />
+      {p.popSubs ? <PopSubs captions={p.captions} font={fonts.body} top={p.subtitlesTop ?? 1290} /> : null}
       <EndCard p={p} look={look} fonts={fonts} />
     </AbsoluteFill>
   );
