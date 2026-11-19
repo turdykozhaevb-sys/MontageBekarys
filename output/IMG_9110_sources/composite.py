@@ -10,7 +10,7 @@ def zoom(t):  # virtual camera keyframes (output time)
     return 1.085-0.01*ease((t-16.39)/0.5)
 dec=subprocess.Popen(['ffmpeg','-v','error','-ss',str(off),'-i',src,'-t',str(dur),'-f','rawvideo','-pix_fmt','rgb24','-'],stdout=subprocess.PIPE)
 enc=subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{Wd}x{Ht}','-r',str(FPS),'-i','-',
-  '-vf','eq=contrast=1.04:saturation=1.06:gamma=0.98,colorbalance=rs=0.02:gs=0.0:bs=-0.03:rh=0.015:bh=-0.02,vignette=angle=0.35,noise=alls=3:allf=t',
+  '-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709',
   '-c:v','libx264','-preset','medium','-crf','16','-pix_fmt','yuv420p',out],stdin=subprocess.PIPE)
 for i in range(N):
     buf=dec.stdout.read(Wd*Ht*3)
