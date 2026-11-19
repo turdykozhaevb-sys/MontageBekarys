@@ -131,7 +131,7 @@ Dialogue: 1,0:00:06.00,0:00:11.80,Head,,0,0,0,,{\pos(540,1150)\fad(180,120)\t(0,
 Dialogue: 0,0:00:06.00,0:00:09.00,Sub,,0,0,0,,Тұрғын үй кешені Комфорт+ санатына жатады
 ```
 
-Сжечь: `ffmpeg -i in.mp4 -vf "ass=subs.ass:fontsdir=./fonts" ...`
+Готовый шаблон: `templates/subs.ass`. Сжечь: `scripts/export.sh video.mp4 out.mp4 subs.ass` (шрифты берутся из `fonts/`).
 
 ---
 
