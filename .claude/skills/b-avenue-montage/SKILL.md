@@ -18,7 +18,7 @@ description: Монтаж вертикальных роликов (Reels/Shorts/
 | `scripts/export.sh video out [subs.ass] [audio.wav]` | Прожиг ASS-субтитров со шрифтами из `fonts/`, H.264 1080×1920, AAC 192k, faststart |
 | `scripts/fonts.sh` | Докачать шрифты в `fonts/` (если папки нет) |
 | `templates/subs.ass` | Стили: `Glow`+`Head` (заголовок со свечением), `Accent` (жёлтый), `Big` (гигантская цифра), `Neon` (Unbounded, неон), `Sub` (нижний перевод) |
-| `templates/motion-overlay.html` + `scripts/render_overlay.js` | Готовый моушн-оверлей (HTML+JS, прозрачный PNG-секвенс 1080×1920 @30): кинетические заголовки со свечением, инфографика-график с рисующимися линиями, нумерованные кружки «1–5», световая вспышка на склейке, RU-перевод снизу. Правятся тексты и тайминги в `render(t)` |
+| `templates/motion-overlay.html`, `templates/motion-overlay-factors.html` + `scripts/render_overlay.js` | Моушн-оверлей на HTML+JS (Playwright → прозрачные кадры → ffmpeg). `motion-overlay.html` — 8-секундный хук (график цены, «5», кружки 1–5). `motion-overlay-factors.html` — длинный ролик 84 c: хук, 5 факторов (заголовок + карточка-инфографика на каждый, трекер 1–5 сверху), бренд-титры, финальный чек-лист; библиотека иконок `IC`, билдеры `ttl/card/item/chip/row`. Тайминги и тексты правятся в коде под слова Whisper. `node scripts/render_overlay.js preview <html> <src> <dir> t1 t2…` — кадры-превью поверх исходника; `node scripts/render_overlay.js build <html> <src> <out.mp4> 30 <сек> [crf]` — полная сборка, звук копируется как есть (`NODE_PATH=$(npm root -g)`) |
 | `fonts/` | Montserrat Black/ExtraBold/SemiBold (+Italic), Unbounded Black, Bebas Neue — все с казахской кириллицей (OFL) |
 
 Пути скриптов — относительно папки скилла. Нужен `ffmpeg` (с libass).
@@ -45,10 +45,12 @@ description: Монтаж вертикальных роликов (Reels/Shorts/
 ## Режим «оригинал»: цвет, голос и музыка не трогать
 
 Если клиент просит сохранить оригинал — **не вызывать `grade.sh` и `mix.sh`**, добавлять только графику:
-1. Тайминги слов из Whisper → `templates/motion-overlay.html` (заголовки, инфографика, перевод), `node scripts/render_overlay.js <dir>` (нужен `NODE_PATH=$(npm root -g)`, Playwright уже стоит) → `NNNN.png`.
-2. Сборка: видео с `format=yuv420p` (без цветокора), оверлей переводить в YUV матрицей bt709: `[1:v]scale=out_color_matrix=bt709:out_range=tv,format=yuva420p[o];[b][o]overlay`, звук `-map 0:a:0 -c:a copy` (бит-в-бит). Проверка: `ffmpeg -i src -map 0:a:0 -f md5 -` и то же по результату — хэши равны.
+1. Тайминги слов из Whisper → копия `templates/motion-overlay*.html` (заголовки, инфографика). Сначала `render_overlay.js preview` на 15–20 таймкодах, смотреть контакт-лист, затем `build`.
+2. Сборка (внутри `build`): видео с `format=yuv420p` (без цветокора), оверлей переводить в YUV матрицей bt709: `[1:v]scale=out_color_matrix=bt709:out_range=tv,format=yuva420p[o];[b][o]overlay`, звук `-map 0:a:0 -c:a copy` (бит-в-бит). Проверка: `ffmpeg -i src -map 0:a:0 -f md5 -` и то же по результату — хэши равны.
 3. Не обрезать начало/конец и не менять длительность без просьбы.
-4. Инфографика только из того, что сказано в речи; выдуманные цифры не рисовать (линии и иконки без значений).
+4. **Нижний русский перевод по умолчанию не добавлять** (клиент просил убрать); субтитры = крупные ключевые слова на языке речи, поправленные вручную (Whisper путает казахские слова — не выводить его сырой текст на экран).
+5. Видео на 90 МБ в git не коммитить (лимит GitHub 100 МБ): класть в `output/` и в `.gitignore`.
+6. Инфографика только из того, что сказано в речи; выдуманные цифры не рисовать (линии и иконки без значений).
 
 ## Для сложной графики
 
