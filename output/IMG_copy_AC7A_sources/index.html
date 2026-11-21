@@ -1,0 +1,122 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  :root{--gold:#D9B26A;--gold2:#F4DCA0;--ink:#101010;}
+  html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden;font-family:'Inter Display','Inter',sans-serif}
+  .card{position:absolute;left:50%;top:262px;transform-origin:50% 0;opacity:0;white-space:nowrap;text-align:center;color:#fff;
+    background:linear-gradient(180deg,rgba(24,22,18,.88),rgba(10,10,10,.88));border:2.5px solid var(--gold);border-radius:34px;
+    padding:22px 46px 26px;box-shadow:0 16px 44px rgba(0,0,0,.45)}
+  .eb{font-weight:700;font-size:34px;letter-spacing:.2em;color:var(--gold)}
+  .gold{background:linear-gradient(180deg,var(--gold2),var(--gold) 60%,#A9803C);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .row{display:flex;align-items:center;justify-content:center;gap:24px}
+  svg{display:block;stroke:var(--gold2);fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+  .big{font-weight:900;line-height:1}
+  #cT .big{font-size:88px}
+  #cY .big{font-size:150px}
+  #cY .sm{font-weight:800;font-size:44px;line-height:1.12;text-align:left}
+  #cP .big{font-size:74px}
+  #cK .big{font-size:96px}
+  #cK .sm{font-weight:700;font-size:40px;color:#fff;margin-top:4px}
+  #cN{padding:24px 40px 30px;border-width:3px}
+  #cN .big{font-size:92px;letter-spacing:.01em}
+  #cN .big span{display:inline-block;white-space:pre}
+  #cN .lab{font-weight:800;font-size:40px;color:#fff;margin-bottom:8px}
+  #subs{position:absolute;left:50px;right:50px;top:1452px;text-align:center;font-weight:800;font-size:60px;line-height:1.22;color:#fff}
+  #subs .box{display:inline;background:rgba(12,12,12,.62);border-radius:20px;padding:6px 20px 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  #subs span.w{display:inline-block}
+  #bar{position:absolute;left:0;top:0;height:8px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+</style></head><body>
+
+<div class="card" id="cT"><div class="eb" id="tE">ҚАБЫЛДАЙМЫЗ</div>
+  <div class="row"><svg id="tCk" width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="31"/><path id="tCkp" d="M22 39 L34 51 L55 26" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+  <div class="big gold">ТРАНЗИТ</div></div></div>
+
+<div class="card" id="cY"><div class="eb">КӨЛІКТЕР</div>
+  <div class="row"><div class="big gold" id="yN">2013</div>
+  <div class="sm"><span class="gold" style="font-size:96px;line-height:.9" id="yP">+</span></div></div>
+  <div class="eb" style="color:#fff;letter-spacing:.06em;font-size:38px;margin-top:2px">жылдан жоғары</div></div>
+
+<div class="card" id="cP"><div class="row">
+  <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="33"/><circle cx="43" cy="43" r="21"/><path d="M43 31 V55 M36 38 H48 Q52 38 52 42 Q52 46 48 46 H38" stroke-width="4"/></svg>
+  <div><div class="eb">ШАРТТАР</div><div class="big gold">БАСТАПҚЫ ЖАРНА</div></div></div></div>
+
+<div class="card" id="cK"><div class="row">
+  <svg width="92" height="92" viewBox="0 0 92 92"><path d="M14 78 V30 L46 14 L78 30 V78 Z"/><path d="M30 78 V52 H62 V78 M30 40 H38 M54 40 H62"/></svg>
+  <div><div class="eb">ТҰРҒЫН ҮЙ КЕШЕНІ</div><div class="big gold">КОМФОРТ ПЛЮС</div><div class="sm">санатындағы үйлер</div></div></div></div>
+
+<div class="card" id="cN"><div class="lab" id="nL">Толық ақпарат үшін</div>
+  <div class="row" style="gap:22px">
+   <svg id="nPh" width="84" height="84" viewBox="0 0 84 84"><path d="M22 14 L34 14 L40 30 L32 36 Q38 50 50 56 L56 48 L72 54 L72 64 Q72 72 62 72 Q18 66 12 24 Q12 14 22 14 Z" fill="rgba(217,178,106,.18)"/></svg>
+   <div class="big" id="nNum"></div></div></div>
+
+<div id="subs"></div><div id="bar"></div>
+
+<script>
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const p=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), ei=x=>x*x*x;
+const back=x=>{const c=1.5;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const $=id=>document.getElementById(id);
+const DUR=21.233;
+
+// subtitles: [start, end, [[word, startTime],...]]
+const SUBS=[
+ [0.00,2.15,[['Қазақты',0.00],['да,',0.46],['транзитті',0.60],['де',1.20],['қабылдаймыз.',1.32]]],
+ [2.15,2.80,[['Асығыңыз!',2.18]]],
+ [2.82,4.30,[['Иә,',2.82],['сіздерде',3.42],['егер',3.90],['де',4.10]]],
+ [4.30,7.40,[['2013',4.34],['жылдан',4.82],['жоғары',5.56],['көліктеріңіз',6.06],['болса,',6.86]]],
+ [7.46,10.20,[['бізге',7.46],['келіп',8.14],['бастапқы',8.68],['жарна',9.30],['ретінде',9.62]]],
+ [10.20,12.75,[['тұрғын',11.26],['үй',11.50],['кешеніндегі',11.70]]],
+ [12.75,14.30,[['комфорт',12.82],['плюс',13.58],['санатындағы',13.72]]],
+ [14.30,15.95,[['үйлерге',14.32],['бастауға',15.06],['болады.',15.54]]],
+ [16.00,17.40,[['Толық',16.00],['ақпарат',16.56],['білу',16.98],['үшін',17.16]]],
+ [17.46,19.20,[['осы',17.46],['номерлерге',17.80],['хабарласыңыздар,',18.38]]],
+ [19.24,20.95,[['біз',19.24],['сіздерді',19.76],['күтеміз.',20.30]]],
+];
+const NUM='+7 700 516 1638';
+$('nNum').classList.remove('gold');$('nNum').innerHTML=[...NUM].map(c=>`<span class="gold">${c}</span>`).join('');
+const digs=[...$('nNum').children];
+
+function card(el,tin,tout,ytop){
+  const t=window.T,i=eo(p(t,tin,tin+.42)),o=ei(p(t,tout,tout+.3));
+  el.style.opacity=i*(1-o);
+  el.style.transform=`translateX(-50%) translateY(${(1-i)*-34-o*50}px) scale(${.9+.1*back(p(t,tin,tin+.5))-.05*o})`;
+}
+function render(t){
+  window.T=t;
+  // progress bar
+  $('bar').style.width=(t/DUR*1080)+'px';
+  // A: transit 0.55-2.8
+  card($('cT'),0.55,2.55);
+  $('tCkp').style.strokeDashoffset=1-eo(p(t,1.0,1.5));
+  // B: 2013+ 4.25-7.35
+  card($('cY'),4.25,7.1);
+  const yn=eo(p(t,4.3,5.0)); $('yN').textContent=Math.round(1990+23*yn);
+  const yp=back(p(t,5.0,5.5)); $('yP').style.display='inline-block'; $('yP').style.transform=`scale(${yp})`; $('yP').style.opacity=clamp(p(t,5.0,5.2)*2);
+  // C: down payment 8.6-10.4
+  card($('cP'),8.6,10.1);
+  // D: comfort plus 11.2-15.9
+  card($('cK'),11.2,15.5);
+  // E: phone 17.40-end
+  const ni=eo(p(t,17.35,17.8)), no=0;
+  const cn=$('cN'); cn.style.opacity=ni*(1-no);
+  cn.style.transform=`translateX(-50%) translateY(${(1-ni)*-40}px) scale(${.9+.1*back(p(t,17.35,17.9))})`;
+  digs.forEach((s,k)=>{const q=p(t,17.7+k*0.045,17.7+k*0.045+.35);s.style.opacity=clamp(q*3);s.style.transform=`translateY(${(1-eo(q))*40}px)`});
+  const ring=Math.sin(clamp((t-18.9)/0.9,0,1)*Math.PI*2);
+  $('nPh').style.transform=`rotate(${ring*10*(t>18.9&&t<19.8?1:0)}deg)`;
+  $('nPh').style.stroke='#F4DCA0';
+  // pulse glow after number is complete
+  const glow=t>18.5?(0.5+0.5*Math.sin((t-18.5)*5)):0; cn.style.boxShadow=`0 16px 44px rgba(0,0,0,.45),0 0 ${glow*36}px rgba(217,178,106,${.55*glow})`;
+  // subtitles
+  let html='';let op=0,ty=0;
+  for(const [s,e,ws] of SUBS){
+    if(t>=s-0.06&&t<e){
+      const a=eo(p(t,s-0.06,s+0.12)); op=a; ty=(1-a)*16;
+      html='<span class="box">'+ws.map(([w,wt],k)=>{const nx=k<ws.length-1?ws[k+1][1]:e;const act=t>=wt-0.03&&t<nx-0.03;
+        return `<span class="w" style="color:${act?'#F4DCA0':'#fff'}">${w}</span>`}).join(' ')+'</span>';
+    }
+  }
+  $('subs').innerHTML=html; $('subs').style.opacity=op; $('subs').style.transform=`translateY(${ty}px)`;
+}
+render(0);
+</script></body></html>
